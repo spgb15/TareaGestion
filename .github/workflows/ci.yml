@@ -4,7 +4,7 @@ name: CI - Validación de Código
 
 on:
   push:
-    branches: [ "main" ] 
+    branches: [ "master" ] 
 
 jobs:
   build-and-test:
