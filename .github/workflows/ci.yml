@@ -1,0 +1,27 @@
+# .github/workflows/ci.yml
+
+name: CI - Validación de Código
+
+on:
+  push:
+    branches: [ "main" ] 
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout del repositorio
+        uses: actions/checkout@v4
+
+      - name: Validar existencia de archivos clave
+        run: |
+          echo "Iniciando validación de archivos..."
+          
+          if [ -f "index.html" ] && [ -f "main.js" ]; then
+            echo "✅ Archivos 'index.html' y 'main.js' encontrados."
+            echo "Validación de código exitosa."
+          else
+            echo "❌ Error: No se encontró 'index.html' o 'main.js'."
+            exit 1 # Termina el flujo con un error.
+          fi
